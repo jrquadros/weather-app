@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { ThemeProvider } from 'styled-components'
+import { Text } from 'react-native'
 import { Provider } from 'react-redux'
 import { Store } from './redux/Store'
-import { Test } from './components/Test'
-
+import { LightTheme } from './utils/Theme'
 export const App = () => {
   return (
     <Provider store={Store}>
-      <Test />
+      <ThemeProvider theme={LightTheme}>
+        <Text>App</Text>
+      </ThemeProvider>
     </Provider>
   )
 }
