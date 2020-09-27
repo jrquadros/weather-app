@@ -9,13 +9,13 @@ export enum WeatherStateEnum {
 }
 
 export interface WeatherState {
-  state: WeatherStateEnum
+  state: 'INIT' | 'LOADING' | 'LOADED' | 'ERROR'
   weatherData: Weather | null
   errorMessage?: string
 }
 
 export const defaultWeatherState: WeatherState = {
-  state: WeatherStateEnum.INIT,
+  state: 'INIT',
   weatherData: null,
 }
 
@@ -24,22 +24,22 @@ export const WeatherReducer = (
   action: WeatherActions
 ): WeatherState => {
   switch (action.type) {
-    case 'WEATHER_FETCH_LOADING':
+    case 'WEATHER_FETCH':
       return {
         ...state,
-        state: WeatherStateEnum.LOADING,
+        state: 'LOADING',
         weatherData: null,
       }
     case 'WEATHER_FETCH_SUCCESS':
       return {
         ...state,
-        state: WeatherStateEnum.LOADED,
+        state: 'LOADED',
         weatherData: action.weather,
       }
     case 'WEATHER_FETCH_ERROR':
       return {
         ...state,
-        state: WeatherStateEnum.ERROR,
+        state: 'ERROR',
         weatherData: null,
         errorMessage: action.errorMessage,
       }

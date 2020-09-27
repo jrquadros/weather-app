@@ -1,7 +1,12 @@
-import { applyMiddleware, compose, createStore } from 'redux'
-import thunk from 'redux-thunk'
+import { applyMiddleware } from 'redux'
+import { configureStore, Action } from '@reduxjs/toolkit'
+import thunk, { ThunkAction } from 'redux-thunk'
 import { RootReducer } from './reducers/RootReducer'
+import { RootState } from './reducers/RootReducer'
 
-const middlewares = [thunk]
+const middleware = [thunk]
 
-export const Store = createStore(RootReducer, applyMiddleware(...middlewares))
+// The AppThunk type will help us in writing type definitions for thunk actions
+export type AppThunk = ThunkAction<void, RootState, unknown, Action<string>>
+
+export const Store = configureStore({ reducer: RootReducer, middleware })
