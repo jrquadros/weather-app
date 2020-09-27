@@ -1,16 +1,28 @@
 import { Weather } from '../../entities/Weather'
-import { Action, Dispatch } from 'redux'
+import { Action, Dispatch, AnyAction, ActionCreator } from 'redux'
+import { ThunkDispatch } from 'redux-thunk'
+import { WeatherState } from '../reducers/WeatherReducer'
+import { WeatherApiService, WeatherApiResponse } from '../../services/WeatherApiService'
+import { Config } from '../../Config'
 
-export const ACTION_WEATHER_FETCH = 'WEATHER_FETCH_LOADING'
+import { AxiosResponse } from 'axios'
+import { AppThunk } from '../Store'
+
+export const ACTION_WEATHER_FETCH = 'WEATHER_FETCH'
 export const ACTION_WEATHER_FETCH_SUCCESS = 'WEATHER_FETCH_SUCCESS'
 export const ACTION_WEATHER_FETCH_ERROR = 'WEATHER_FETCH_ERROR'
+
+export type WeatherActions =
+  | IActionWeatherFetch
+  | IActionWeatherFetchSuccess
+  | IActionWeatherFetchError
 
 export const isAction = <A extends Action>(action: Action, type: string): action is A => {
   return action.type === type
 }
 
 export interface IActionWeatherFetch extends Action {
-  type: 'WEATHER_FETCH_LOADING'
+  type: 'WEATHER_FETCH'
 }
 
 export interface IActionWeatherFetchSuccess extends Action {
@@ -22,11 +34,6 @@ export interface IActionWeatherFetchError extends Action {
   type: 'WEATHER_FETCH_ERROR'
   errorMessage: string
 }
-
-export type WeatherActions =
-  | IActionWeatherFetch
-  | IActionWeatherFetchSuccess
-  | IActionWeatherFetchError
 
 const dispatchFechWeatherLoading = (): IActionWeatherFetch => {
   return {
@@ -48,11 +55,24 @@ const dispatchFetchWeatherError = (error: Error): IActionWeatherFetchError => {
   }
 }
 
-export const ActionFetchWeather = async () => (dispatch: Dispatch) => {
-  try {
-    // TODO: fetch weather here
-    dispatch(dispatchFechWeatherLoading())
-  } catch (error) {
-    // TODO: dispatch error
-  }
+export const ActionFetchWeather = (coordinates: { lat: number; lon: number }): AppThunk => async (
+  dispatch: ThunkDispatch<WeatherState, void, Action>
+) => {
+  const { lat, lon } = coordinates
+  dispatch(dispatchFechWeatherLoading())
+
+  WeatherApiService.get('/', { params: { lat, lon, appid: Config.weattherApiKey } })
+    .then((res: AxiosResponse<WeatherApiResponse>) => {
+      const weather: Weather = {
+        description: res.data.weather[0].description,
+        main: res.data.weather[0].main,
+        name: res.data.name,
+        icon: res.data.weather[0].icon,
+        temp: res.data.main.temp,
+      }
+      dispatch(dispatchFetchWeatherSuccess(weather))
+    })
+    .catch((err: Error) => {
+      dispatch(dispatchFetchWeatherError(err))
+    })
 }
