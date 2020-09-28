@@ -1,11 +1,12 @@
 import axios from 'axios'
 import { Config } from '../Config'
+import { ResponseIcons } from '../utils/Helpers'
 
 export type WeatherApiResponse = {
   weather: {
     main: string
     description: string
-    icon: string
+    icon: ResponseIcons
   }[]
   main: {
     temp: number

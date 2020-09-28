@@ -27,7 +27,7 @@ export const LocationInfo = (props: LocationInfoProps) => {
     <Wrapper>
       <Container>
         <Text size="80px" color="#404040">
-          {props.temp}°
+          {Math.trunc(props.temp)}°
         </Text>
       </Container>
       <Icon name="location-outline" color="#404040" size={30} />

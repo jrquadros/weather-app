@@ -1,4 +1,4 @@
 export const Config = {
   weatherApiUrl: 'http://api.openweathermap.org/data/2.5/weather',
-  weattherApiKey: 'bb019c3218298e0a8b0410cde448217a',
+  weatherApiKey: 'a8cc36afe64cc1e5da2c2604e7a3639a',
 }

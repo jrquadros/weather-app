@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components/native'
 import { Text } from '../../base/Text'
 import { WeatherIcon } from './WeatherIcon'
-import { ResponseIcons } from '../../../utils/Helpers'
+import { ResponseIcons, GetTempStatus } from '../../../utils/Helpers'
 
 type InfoPanelProps = {
   weatherInfo: {
@@ -36,7 +36,7 @@ export const Panel = (props: InfoPanelProps) => {
       <Row>
         <Container>
           <Text>It's</Text>
-          <Text bold={'bold'}>{props.weatherInfo.main}</Text>
+          <Text bold={'bold'}>{GetTempStatus(props.weatherInfo.temp)}</Text>
           <Text>outside</Text>
         </Container>
         <WeatherIcon iconPath={props.weatherInfo.icon} />

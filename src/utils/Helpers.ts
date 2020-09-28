@@ -2,6 +2,8 @@ export const CapitalizeFirstLetter = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
+export const GetTempStatus = (temp: number) => (temp < 25 ? 'cold' : 'warm')
+
 export const ResponseToIconMap = {
   '01d': 'weather-cloudy',
   '02d': 'weather-partly-cloudy',

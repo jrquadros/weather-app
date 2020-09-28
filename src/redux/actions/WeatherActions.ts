@@ -62,9 +62,10 @@ export const ActionFetchWeather = (coordinates: { lat: number; lon: number }): A
   dispatch(dispatchFechWeatherLoading())
 
   WeatherApiService.get('/', {
-    params: { lat, lon, appid: Config.weattherApiKey, units: 'metric' },
+    params: { lat, lon, appid: Config.weatherApiKey, units: 'metric' },
   })
     .then((res: AxiosResponse<WeatherApiResponse>) => {
+      console.log('LAT LON', lat, lon)
       const weather: Weather = {
         description: res.data.weather[0].description,
         icon: res.data.weather[0].icon,
@@ -72,9 +73,12 @@ export const ActionFetchWeather = (coordinates: { lat: number; lon: number }): A
         name: res.data.name,
         temp: res.data.main.temp,
       }
+      console.log(res.data, 'data')
       dispatch(dispatchFetchWeatherSuccess(weather))
     })
     .catch((err: Error) => {
       dispatch(dispatchFetchWeatherError(err))
+      console.log(err)
+      console.log('LAT LON  ERRO', lat, lon)
     })
 }
