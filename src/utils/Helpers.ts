@@ -1,8 +1,8 @@
 export const CapitalizeFirstLetter = (string: string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1)
-}
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
 
-export const GetTempStatus = (temp: number) => (temp < 25 ? 'cold' : 'warm')
+export const GetTempStatus = (temp: number) => (temp < 25 ? 'cold' : 'warm');
 
 export const ResponseToIconMap = {
   '01d': 'weather-cloudy',
@@ -23,6 +23,6 @@ export const ResponseToIconMap = {
   '11n': 'weather-lightning-rainy',
   '13n': 'weather-snowy',
   '50n': 'weather-fog',
-}
+};
 
-export type ResponseIcons = keyof typeof ResponseToIconMap
+export type ResponseIcons = keyof typeof ResponseToIconMap;

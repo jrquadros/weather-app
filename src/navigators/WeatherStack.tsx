@@ -1,8 +1,8 @@
-import React from 'react'
-import { Weatherinfo } from '../components/weather/screens/WeatherInfoScreen'
-import { createStackNavigator } from '@react-navigation/stack'
+import React from 'react';
+import { Weatherinfo } from '../components/weatherStack/screens/WeatherInfoScreen';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const Stack = createStackNavigator()
+const Stack = createStackNavigator();
 
 export const WeatherStack = () => {
   return (
@@ -13,5 +13,5 @@ export const WeatherStack = () => {
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
-  )
-}
+  );
+};

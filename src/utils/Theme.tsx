@@ -1,17 +1,17 @@
-import { DefaultTheme } from 'styled-components'
+import { DefaultTheme } from 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
-      primary: string
-      secondary: string
-      white: string
-    }
+      primary: string;
+      secondary: string;
+      white: string;
+    };
     fontSizes: {
-      small: string
-      medium: string
-      large: string
-    }
+      small: string;
+      medium: string;
+      large: string;
+    };
   }
 }
 
@@ -26,4 +26,4 @@ export const LightTheme: DefaultTheme = {
     medium: '16px',
     large: '32px',
   },
-}
+};

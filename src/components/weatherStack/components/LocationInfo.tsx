@@ -1,14 +1,14 @@
-import React from 'react'
-import styled from 'styled-components/native'
-import { Text } from '../../base/Text'
-import Icon from 'react-native-vector-icons/Ionicons'
-import { CapitalizeFirstLetter } from '../../../utils/Helpers'
+import React from 'react';
+import styled from 'styled-components/native';
+import { Text } from '../../base/Text';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { CapitalizeFirstLetter } from '../../../utils/Helpers';
 
 type LocationInfoProps = {
-  location: string
-  description: string
-  temp: number
-}
+  location: string;
+  description: string;
+  temp: number;
+};
 
 const Wrapper = styled.View`
   display: flex;
@@ -16,11 +16,11 @@ const Wrapper = styled.View`
   padding: 40px 20px;
   align-items: center;
   align-content: center;
-`
+`;
 
 const Container = styled.View`
   margin-top: 20px;
-`
+`;
 
 export const LocationInfo = (props: LocationInfoProps) => {
   return (
@@ -36,5 +36,5 @@ export const LocationInfo = (props: LocationInfoProps) => {
         {CapitalizeFirstLetter(props.description)}
       </Text>
     </Wrapper>
-  )
-}
+  );
+};

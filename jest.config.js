@@ -4,4 +4,4 @@ module.exports = {
     '^.+\\.ts?$': 'babel-jest',
   },
   testEnvironment: 'node',
-}
+};
