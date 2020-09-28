@@ -1,5 +1,5 @@
 import { Weather } from '../../entities/Weather'
-import { Action, Dispatch, AnyAction, ActionCreator } from 'redux'
+import { Action } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 import { WeatherState } from '../reducers/WeatherReducer'
 import { WeatherApiService, WeatherApiResponse } from '../../services/WeatherApiService'
@@ -61,13 +61,15 @@ export const ActionFetchWeather = (coordinates: { lat: number; lon: number }): A
   const { lat, lon } = coordinates
   dispatch(dispatchFechWeatherLoading())
 
-  WeatherApiService.get('/', { params: { lat, lon, appid: Config.weattherApiKey } })
+  WeatherApiService.get('/', {
+    params: { lat, lon, appid: Config.weattherApiKey, units: 'metric' },
+  })
     .then((res: AxiosResponse<WeatherApiResponse>) => {
       const weather: Weather = {
         description: res.data.weather[0].description,
+        icon: res.data.weather[0].icon,
         main: res.data.weather[0].main,
         name: res.data.name,
-        icon: res.data.weather[0].icon,
         temp: res.data.main.temp,
       }
       dispatch(dispatchFetchWeatherSuccess(weather))

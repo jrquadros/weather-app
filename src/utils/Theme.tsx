@@ -5,6 +5,7 @@ declare module 'styled-components' {
     colors: {
       primary: string
       secondary: string
+      white: string
     }
     fontSizes: {
       small: string
@@ -16,12 +17,13 @@ declare module 'styled-components' {
 
 export const LightTheme: DefaultTheme = {
   colors: {
-    primary: '',
-    secondary: '',
+    primary: '#16DCF2',
+    secondary: '#F26DDC',
+    white: '#FFFFFF',
   },
   fontSizes: {
-    small: '',
-    medium: '',
-    large: '',
+    small: '14px',
+    medium: '16px',
+    large: '32px',
   },
 }
