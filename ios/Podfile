@@ -8,6 +8,10 @@ target 'WeatherApp' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+  pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
+
   target 'WeatherAppTests' do
     inherit! :complete
     # Pods for testing
